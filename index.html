@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="app-header">
+      <div class="header-left">
+        <span class="app-tag">✦ productivity</span>
+        <h1>To Do <span>List</span></h1>
+      </div>
+      <div class="header-stats">
+        <div class="stat"><span id="allCount">0</span><label>Total</label></div>
+        <div class="stat"><span id="pendingCount">0</span><label>Pending</label></div>
+        <div class="stat"><span id="completedCount">0</span><label>Done</label></div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <p class="sidebar-label">Filter</p>
+        <button class="filter-btn active" onclick="filterTasks('all')" id="btn-all">All</button>
+        <button class="filter-btn" onclick="filterTasks('pending')" id="btn-pending">Pending</button>
+        <button class="filter-btn" onclick="filterTasks('completed')" id="btn-completed">Completed</button>
+
+        <div class="sidebar-divider"></div>
+
+        <button class="clear-btn" onclick="clearCompleted()">Clear Done</button>
+      </div>
+
+      <!-- MAIN AREA -->
+      <div class="tasks-area">
+
+        <input type="text" id="search" placeholder="🔍  Search tasks..." autocomplete="off">
+
+        <div class="input-row">
+          <input type="text" id="taskInput" placeholder="What needs to be done?" maxlength="200" autocomplete="off">
+          <button onclick="addTask()" id="addBtn" type="button">Add</button>
+        </div>
+
+        <div id="taskList"></div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+          <div class="empty-icon">◎</div>
+          <p id="emptyMsg">No tasks yet. Add one above!</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
