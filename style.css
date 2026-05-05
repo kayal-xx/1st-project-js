@@ -21,6 +21,20 @@
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
 }
+
+/* title */
+.title::before {
+  content: "✦";
+  margin-right: 8px;
+  display: inline-block;
+}
+.icon {
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
 /* smooth scroll */
 html {
   scroll-behavior: smooth;
