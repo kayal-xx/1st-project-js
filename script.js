@@ -1,14 +1,19 @@
-// Data store
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-let currentFilter = "all";
-
-// save function
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-// Enter press
+// login check
 document.addEventListener("DOMContentLoaded", () => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  
+  if (!currentUser || !currentUser.username) {
+    // Not logged in - redirect to login page
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  // User is logged in - Display username
+  document.getElementById('username').textContent = currentUser.username;
+  
+  // Load user-specific tasks
+  loadUserTasks(currentUser.username);
+  
   document.getElementById("taskInput").addEventListener("keypress", (e) => {
     if (e.key === "Enter") addTask();
   });
@@ -17,6 +22,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTasks();
 });
+
+// Data store
+let tasks = [];
+let currentFilter = "all";
+let currentUser = null;
+
+// Load user-specific tasks from localStorage
+function loadUserTasks(username) {
+  if (username) {
+    const userTasksKey = `tasks_${username}`;
+    tasks = JSON.parse(localStorage.getItem(userTasksKey)) || [];
+  }
+}
+
+// Save tasks with username
+function saveTasks() {
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  if (user && user.username) {
+    const userTasksKey = `tasks_${user.username}`;
+    localStorage.setItem(userTasksKey, JSON.stringify(tasks));
+  }
+}
+
+// Logout function
+function logoutUser() {
+  if (confirm('Are you sure you want to logout?')) {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+  }
+}
 
 // add task
 function addTask() {
@@ -37,7 +72,7 @@ function addTask() {
 
   input.value = "";
   saveTasks();
-  filterTasks("all"); // reset to all so user sees new task
+  filterTasks("all");
 }
 
 // Toggle task
@@ -59,8 +94,7 @@ function editTask(id) {
 
   taskEl.contentEditable = "true";
   taskEl.focus();
-
-  // select all text
+  
   const range = document.createRange();
   range.selectNodeContents(taskEl);
   window.getSelection().removeAllRanges();
@@ -104,7 +138,7 @@ function deleteTask(id) {
   }
 }
 
-//  Clear Completed tasks
+// Clear Completed tasks
 function clearCompleted() {
   const completed = document.querySelectorAll(".task.done");
   if (!completed.length) return;
@@ -120,18 +154,17 @@ function clearCompleted() {
   }, completed.length * 50 + 260);
 }
 
-//  Filter 
+// Filter 
 function filterTasks(type) {
   currentFilter = type;
 
-  // update active button
   document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
   document.getElementById(`btn-${type}`).classList.add("active");
 
   renderTasks();
 }
 
-//  Render ui
+// Render ui
 function renderTasks() {
   const list = document.getElementById("taskList");
   const emptyState = document.getElementById("emptyState");

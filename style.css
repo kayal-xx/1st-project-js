@@ -28,6 +28,7 @@
   margin-right: 8px;
   display: inline-block;
 }
+
 .icon {
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -88,6 +89,128 @@ body {
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
   gap: 16px;
+}
+
+/*Header*/
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+/* user section */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(232, 98, 42, 0.2);
+}
+
+.welcome-text {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.welcome-text strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1.5px solid var(--error);
+  color: var(--error);
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background: rgba(224, 48, 48, 0.1);
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+.header-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat span {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* mobile friendly */
+@media (max-width: 620px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    width: 100%;
+    align-items: flex-end;
+  }
+
+  .user-section {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .logout-btn {
+    width: auto;
+  }
+
+  .header-stats {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 
 .app-tag {

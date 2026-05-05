@@ -1,4 +1,4 @@
-// ========== CHECK IF ALREADY LOGGED IN ==========
+// check alredy login user
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   if (currentUser && currentUser.username) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ========== LOGIN HANDLER ==========
+// login handler
 function handleLogin(e) {
   e.preventDefault();
   clearErrors();
@@ -64,7 +64,7 @@ function handleLogin(e) {
   }, 1000);
 }
 
-// ========== SIGNUP HANDLER ==========
+// sign up handler 
 document.addEventListener('DOMContentLoaded', () => {
   const signupForm = document.getElementById('signupForm');
   if (signupForm) {
@@ -149,7 +149,7 @@ function handleSignup(e) {
   }, 1500);
 }
 
-// ========== HELPER FUNCTIONS ==========
+// helper
 function showError(inputId, message) {
   const input = document.getElementById(inputId);
   if (!input) return;
@@ -168,7 +168,7 @@ function showError(inputId, message) {
   errorElement.textContent = message;
   errorElement.classList.add('show');
   
-  // Remove error on focus
+  // remove error
   input.addEventListener('focus', () => {
     input.classList.remove('error');
     if (errorElement) errorElement.classList.remove('show');
@@ -206,7 +206,7 @@ function isValidEmail(email) {
   return regex.test(email);
 }
 
-// ========== LOGOUT ==========
+// logout
 function logoutUser() {
   if (confirm('Are you sure you want to logout?')) {
     localStorage.removeItem('currentUser');

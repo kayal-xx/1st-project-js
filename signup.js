@@ -1,4 +1,4 @@
-// ========== SIGNUP HANDLER ==========
+// sign up hedder
 document.getElementById('signupForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
@@ -78,7 +78,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
   }, 1500);
 });
 
-// ========== HELPER FUNCTIONS ==========
+// helper 
 function showError(inputId, message) {
   const input = document.getElementById(inputId);
   if (input) {
@@ -130,7 +130,7 @@ function toggleForm() {
   // You can add login form similarly
 }
 
-// ========== CHECK IF ALREADY LOGGED IN ==========
+// if alredy login check
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   if (currentUser && currentUser.username) {
